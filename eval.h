@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
 #include <readline/readline.h>
 
 typedef enum token_type {
@@ -13,16 +15,20 @@ typedef enum token_type {
     MINUS,
     STAR,
     SLASH,
+    UNKNOWN,
 } token_type;
 
 typedef struct t_token {
-    char        *literal;
-    token_type  type;
+    char            *literal;
+    int             value;
+    token_type      type;
+    struct t_token  *next;
 } t_token;
 
-typedef struct node {
-    t_token     token;
-    struct node *next;
-} node;
+// TOKENS
+t_token    *new_token(char *literal, token_type type);
+void    add_token(t_token **head, t_token *n);
 
+// LEXER
+t_token    *lexer(char *line);
 #endif

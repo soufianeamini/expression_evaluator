@@ -1,6 +1,8 @@
 LEXER	=	lexer.c
 
-SRCS	=	main.c $(addprefix lexer/, $(LEXER))
+TOKEN	=	token.c
+
+SRCS	=	main.c $(addprefix lexer/, $(LEXER)) $(addprefix token/, $(TOKEN))
 
 OBJS	=	$(SRCS:.c=.o)
 
