@@ -4,16 +4,19 @@
 void    init_wrapper(w_wrapper *o, t_token *token) {
     o->previous = NULL;
     o->token = token;
-    o->token = token->next;
+    o->peek = token->next;
 }
 
 void    advance(w_wrapper *o) {
     o->previous = o->token;
     o->token = o->token->next;
-    o->peek = o->token->next;
+    if (o->token)
+        o->peek = o->token->next;
 }
 
 bool    check(w_wrapper *o, token_type type) {
+    if (!o->token)
+        return false;
     if (o->token->type == type)
         return true;
     return false;
@@ -49,7 +52,7 @@ t_tree  *primary(w_wrapper *o) {
         consume(o, RPAREN);
         return expr;
     }
-    fprintf(stderr, "Error: Unknown Token");
+    fprintf(stderr, "Error: Unknown Token: %s => %s\n", print_token(o->token->type), o->token->literal);
     return NULL;
 }
 

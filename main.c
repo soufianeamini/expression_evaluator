@@ -27,25 +27,16 @@ void    print_ast(t_tree *ast, int space) {
     print_ast(ast->left, space);
 }
 
-// void    print_ast(t_tree *ast, int depth) {
-//     for (int i = 0; i < depth; i++)
-//         printf("    ");
-//     if (ast->token->type == INTEGER)
-//         printf("%d", ast->token->value);
-//     else
-//         printf("%s", ast->token->literal);
-//     if (ast->left)
-//         print_ast(ast->left, depth + 1);
-//     if (ast->right)
-//         print_ast(ast->right, depth + 1);
-//     printf("\n");
-// }
-
 int main() {
-    char *line = readline("> ");
-    t_token *token = lexer(line);
-    // print_tokens(token);
-    t_tree *ast = parse(token);
-    print_ast(ast, 0);
+    for (;;) {
+        char *line = readline("> ");
+        if (!line)
+            break;
+        t_token *token = lexer(line);
+        // print_tokens(token);
+        t_tree *ast = parse(token);
+        print_ast(ast, 0);
+        free(line);
+    }
     return 0;
 }

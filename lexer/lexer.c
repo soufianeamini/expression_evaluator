@@ -14,7 +14,7 @@ t_token    *lexer(char *line) {
                 break;
             case '(': add_token(&tokens, new_ltoken("(", LPAREN));
                 break;
-            case ')': add_token(&tokens, new_ltoken(")", LPAREN));
+            case ')': add_token(&tokens, new_ltoken(")", RPAREN));
                 break;
             case ' ': continue;
             default:
