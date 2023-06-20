@@ -52,7 +52,10 @@ t_tree  *primary(w_wrapper *o) {
         consume(o, RPAREN);
         return expr;
     }
-    fprintf(stderr, "Error: Expected expression after token: '%s'\n", previous(o)->literal);
+    if (!previous(o))
+        fprintf(stderr, "Unexpected token: %s\n", o->token->literal);
+    else
+        fprintf(stderr, "Error: Expected expression after token: '%s'\n", previous(o)->literal);
     return NULL;
 }
 

@@ -1,6 +1,8 @@
 #include "../eval.h"
 
 void    free_ast(t_tree *ast) {
+    if (!ast)
+        return;
     if (ast->left)
         free_ast(ast->left);
     if (ast->right)

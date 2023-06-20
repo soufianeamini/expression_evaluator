@@ -24,6 +24,8 @@ t_token    *lexer(char *line) {
                     add_token(&tokens, token);
                     while(isdigit(line[i + 1]))
                         i++;
+                } else {
+                    add_token(&tokens, new_ltoken("Unknown", UNKNOWN));
                 }
                 break;
         }
