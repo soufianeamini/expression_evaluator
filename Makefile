@@ -10,10 +10,12 @@ CC		=	cc
 
 CFLAGS	=	-Wall -Wextra -Werror
 
+LFLAGS	=	-lreadline
+
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $@
+	$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) -o $@
 
 %.o:	%.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@

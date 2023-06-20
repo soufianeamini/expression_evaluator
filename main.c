@@ -1,6 +1,7 @@
 #include "eval.h"
 
 int main() {
-    printf("Hello\n");
+    char *line = readline("> ");
+    printf("%s\n", line);
     return 0;
 }

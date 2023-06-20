@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <readline/readline.h>
 
 typedef enum token_type {
     INTEGER,
