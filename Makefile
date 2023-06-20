@@ -2,11 +2,9 @@ PARSER	=	parser.c
 
 LEXER	=	lexer.c
 
-TOKEN	=	token.c
+DATA	=	tree.c token.c
 
-TREE	=	tree.c
-
-SRCS	=	main.c $(addprefix lexer/, $(LEXER)) $(addprefix token/, $(TOKEN)) $(addprefix parser/, $(PARSER)) $(addprefix tree/, $(TREE))
+SRCS	=	main.c $(addprefix lexer/, $(LEXER)) $(addprefix parser/, $(PARSER)) $(addprefix data_structs/, $(DATA))
 
 OBJS	=	$(SRCS:.c=.o)
 
