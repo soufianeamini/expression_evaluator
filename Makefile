@@ -16,7 +16,7 @@ NAME	=	evaluator
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -g
 
 LFLAGS	=	-lreadline
 

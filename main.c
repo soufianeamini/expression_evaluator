@@ -37,6 +37,8 @@ int main() {
         t_tree *ast = parse(token);
         print_ast(ast, 0);
         free(line);
+        free_tokens(token);
+        free_ast(ast);
     }
     return 0;
 }

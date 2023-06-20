@@ -60,7 +60,7 @@ t_tree  *factor(w_wrapper *o) {
     t_tree *expr = primary(o);
 
     while (match(o, STAR) || match(o, SLASH)) {
-        t_token *token = new_ltoken(previous(o)->literal, previous(o)->type);
+        t_token *token = previous(o);
         t_tree *right = primary(o);
         expr = new_tree(expr, token, right);
     }
@@ -72,7 +72,7 @@ t_tree  *expression(w_wrapper *o) {
     t_tree *expr = factor(o);
 
     while (match(o, PLUS) || match(o, MINUS)) {
-        t_token *token = new_ltoken(previous(o)->literal, previous(o)->type);
+        t_token *token = previous(o);
         t_tree *right = factor(o);
         expr = new_tree(expr, token, right);
     }

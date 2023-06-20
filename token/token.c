@@ -1,5 +1,11 @@
 #include "../eval.h"
 
+void    free_tokens(t_token *token) {
+    if (token->next)
+        free_tokens(token->next);
+    free(token);
+}
+
 t_token    *new_ltoken(char *literal, token_type type) {
     t_token *token = calloc(sizeof(t_token), 1);
     if (!token)
