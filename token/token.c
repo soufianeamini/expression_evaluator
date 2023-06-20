@@ -1,10 +1,20 @@
 #include "../eval.h"
 
-t_token    *new_token(char *literal, token_type type) {
+t_token    *new_ltoken(char *literal, token_type type) {
     t_token *token = calloc(sizeof(t_token), 1);
     if (!token)
         return NULL;
     token->literal = literal;
+    token->type = type;
+    token->next = NULL;
+    return token;
+}
+
+t_token    *new_itoken(int value, token_type type) {
+    t_token *token = calloc(sizeof(t_token), 1);
+    if (!token)
+        return NULL;
+    token->value = value;
     token->type = type;
     token->next = NULL;
     return token;

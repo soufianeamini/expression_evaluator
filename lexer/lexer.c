@@ -4,24 +4,23 @@ t_token    *lexer(char *line) {
     t_token *tokens = NULL;
     for (int i = 0; line[i]; i++) {
         switch (line[i]) {
-            case '+': add_token(&tokens, new_token("+", PLUS));
+            case '+': add_token(&tokens, new_ltoken("+", PLUS));
                 break;
-            case '-': add_token(&tokens, new_token("-", MINUS));
+            case '-': add_token(&tokens, new_ltoken("-", MINUS));
                 break;
-            case '*': add_token(&tokens, new_token("*", STAR));
+            case '*': add_token(&tokens, new_ltoken("*", STAR));
                 break;
-            case '/': add_token(&tokens, new_token("/", SLASH));
+            case '/': add_token(&tokens, new_ltoken("/", SLASH));
                 break;
-            case '(': add_token(&tokens, new_token("(", LPAREN));
+            case '(': add_token(&tokens, new_ltoken("(", LPAREN));
                 break;
-            case ')': add_token(&tokens, new_token(")", LPAREN));
+            case ')': add_token(&tokens, new_ltoken(")", LPAREN));
                 break;
             case ' ': continue;
             default:
                 if (isdigit(line[i])) {
                     int value = atoi(line +i);
-                    t_token *token = new_token("", INTEGER);
-                    token->value = value;
+                    t_token *token = new_itoken(value, INTEGER);
                     add_token(&tokens, token);
                     while(isdigit(line[i + 1]))
                         i++;
