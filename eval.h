@@ -44,10 +44,15 @@ typedef struct w_wrapper {
 t_token    *new_ltoken(char *literal, token_type type);
 t_token    *new_itoken(int value, token_type type);
 void    add_token(t_token **head, t_token *n);
+char    *print_token(token_type type);
 
 // LEXER
 t_token    *lexer(char *line);
 
 // PARSER
 t_tree  *parse(t_token *token);
+t_tree  *expression(w_wrapper *o);
+
+// TREE
+t_tree *new_tree(t_tree *left, t_token *token, t_tree *right);
 #endif

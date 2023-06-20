@@ -9,10 +9,25 @@ void    print_tokens(t_token *token) {
     }
 }
 
+void    print_ast(t_tree *ast, int depth) {
+    for (int i = 0; i < depth; i++)
+        printf(" ");
+    if (ast->token->type == INTEGER)
+        printf("%d", ast->token->value);
+    else
+        printf("%s", ast->token->literal);
+    if (ast->left)
+        print_ast(ast->left, depth + 1);
+    if (ast->right)
+        print_ast(ast->right, depth + 1);
+    printf("\n");
+}
+
 int main() {
     char *line = readline("> ");
     t_token *token = lexer(line);
-    print_tokens(token);
+    // print_tokens(token);
     t_tree *ast = parse(token);
+    print_ast(ast, 0);
     return 0;
 }

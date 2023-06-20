@@ -32,6 +32,15 @@ void    add_token(t_token **head, t_token *n) {
     temp->next = n;
 }
 
-char    *print_token(t_token *token) {
-    return NULL;
+char    *print_token(token_type type) {
+    switch (type) {
+        case INTEGER: return "INTEGER";
+        case LPAREN: return "(";
+        case RPAREN: return ")";
+        case PLUS: return "+";
+        case MINUS: return "-";
+        case STAR: return "*";
+        case SLASH: return "/";
+        default: return "";
+    }
 }
