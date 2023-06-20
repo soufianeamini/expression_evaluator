@@ -1,4 +1,6 @@
-SRCS	=	main.c
+LEXER	=	lexer.c
+
+SRCS	=	main.c $(addprefix lexer/, $(LEXER))
 
 OBJS	=	$(SRCS:.c=.o)
 
