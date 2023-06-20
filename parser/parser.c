@@ -41,7 +41,7 @@ bool    match(w_wrapper *o, token_type type) {
 
 bool    consume(w_wrapper *o, token_type type) {
     if (match(o, type)) return true;
-    fprintf(stderr, "Error: Expected token %s after expression.\n", print_token(type));
+    fprintf(stderr, "Error: Expected token '%s' after expression.\n", print_token(type));
     return false;
 }
 
@@ -52,7 +52,7 @@ t_tree  *primary(w_wrapper *o) {
         consume(o, RPAREN);
         return expr;
     }
-    fprintf(stderr, "Error: Unknown Token: %s => %s\n", print_token(o->token->type), o->token->literal);
+    fprintf(stderr, "Error: Expected expression after token: '%s'\n", previous(o)->literal);
     return NULL;
 }
 
