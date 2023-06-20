@@ -57,4 +57,7 @@ t_tree  *expression(w_wrapper *o);
 // TREE
 t_tree *new_tree(t_tree *left, t_token *token, t_tree *right);
 void    free_ast(t_tree *ast);
+
+// EVALUATOR
+double  evaluate(t_tree *ast);
 #endif

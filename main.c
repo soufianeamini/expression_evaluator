@@ -35,7 +35,9 @@ int main() {
         t_token *token = lexer(line);
         // print_tokens(token);
         t_tree *ast = parse(token);
-        print_ast(ast, 0);
+        // print_ast(ast, 0);
+        double value = evaluate(ast);
+        printf("%f\n", value);
         free(line);
         free_tokens(token);
         free_ast(ast);
