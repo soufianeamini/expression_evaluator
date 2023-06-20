@@ -13,6 +13,6 @@ int main() {
     char *line = readline("> ");
     t_token *token = lexer(line);
     print_tokens(token);
-    // t_tree *ast = parse(token);
+    t_tree *ast = parse(token);
     return 0;
 }

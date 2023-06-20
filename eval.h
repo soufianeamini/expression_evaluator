@@ -34,11 +34,11 @@ typedef struct t_tree {
 
 // This wrapper makes it easy to advance the tokens
 // and get the previous token etc
-struct w_wrapper {
+typedef struct w_wrapper {
     t_token *token;
     t_token *previous;
     t_token *peek;
-};
+} w_wrapper;
 
 // TOKENS
 t_token    *new_ltoken(char *literal, token_type type);

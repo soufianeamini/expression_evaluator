@@ -31,3 +31,7 @@ void    add_token(t_token **head, t_token *n) {
     while (temp->next) temp = temp->next;
     temp->next = n;
 }
+
+char    *print_token(t_token *token) {
+    return NULL;
+}
