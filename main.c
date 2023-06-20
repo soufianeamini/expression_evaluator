@@ -9,19 +9,37 @@ void    print_tokens(t_token *token) {
     }
 }
 
-void    print_ast(t_tree *ast, int depth) {
-    for (int i = 0; i < depth; i++)
+void    print_ast(t_tree *ast, int space) {
+    if (!ast)
+        return;
+
+    space += 3;
+    print_ast(ast->right, space);
+
+    printf("\n");
+    for (int i = 3; i < space; i++)
         printf(" ");
     if (ast->token->type == INTEGER)
-        printf("%d", ast->token->value);
+        printf("%d\n", ast->token->value);
     else
-        printf("%s", ast->token->literal);
-    if (ast->left)
-        print_ast(ast->left, depth + 1);
-    if (ast->right)
-        print_ast(ast->right, depth + 1);
-    printf("\n");
+        printf("%s\n", ast->token->literal);
+
+    print_ast(ast->left, space);
 }
+
+// void    print_ast(t_tree *ast, int depth) {
+//     for (int i = 0; i < depth; i++)
+//         printf("    ");
+//     if (ast->token->type == INTEGER)
+//         printf("%d", ast->token->value);
+//     else
+//         printf("%s", ast->token->literal);
+//     if (ast->left)
+//         print_ast(ast->left, depth + 1);
+//     if (ast->right)
+//         print_ast(ast->right, depth + 1);
+//     printf("\n");
+// }
 
 int main() {
     char *line = readline("> ");
