@@ -5,6 +5,7 @@ void    init_wrapper(w_wrapper *o, t_token *token) {
     o->previous = NULL;
     o->token = token;
     o->peek = token->next;
+    o->error = false;
 }
 
 void    advance(w_wrapper *o) {
@@ -42,6 +43,7 @@ bool    match(w_wrapper *o, token_type type) {
 bool    consume(w_wrapper *o, token_type type) {
     if (match(o, type)) return true;
     fprintf(stderr, "Error: Expected token '%s' after expression.\n", print_token(type));
+    o->error = true;
     return false;
 }
 
@@ -56,6 +58,7 @@ t_tree  *primary(w_wrapper *o) {
         fprintf(stderr, "Unexpected token: %s\n", o->token->literal);
     else
         fprintf(stderr, "Error: Expected expression after token: '%s'\n", previous(o)->literal);
+    o->error = true;
     return NULL;
 }
 
@@ -87,6 +90,9 @@ t_tree  *parse(t_token *token) {
     w_wrapper local;
     w_wrapper *o = &local;
     init_wrapper(o, token);
-    return expression(o);
+    t_tree  *expr = expression(o);
+    if (o->error)
+        return (free_ast(expr), NULL);
+    return expr;
 }
 

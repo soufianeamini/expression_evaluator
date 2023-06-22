@@ -38,6 +38,7 @@ typedef struct w_wrapper {
     t_token *token;
     t_token *previous;
     t_token *peek;
+    bool    error;
 } w_wrapper;
 
 // TOKENS

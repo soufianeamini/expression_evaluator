@@ -39,6 +39,10 @@ int main() {
         // print_tokens(token);
         t_tree *ast = parse(token);
         // print_ast(ast, 0);
+        if (!ast) {
+            free_tokens(token);
+            continue;
+        }
         double value = evaluate(ast);
         if ((int)value == value)
             printf("%d\n", (int)value);
