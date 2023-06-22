@@ -91,6 +91,10 @@ t_tree  *parse(t_token *token) {
     w_wrapper *o = &local;
     init_wrapper(o, token);
     t_tree  *expr = expression(o);
+    if (o->token) {
+        printf("Error: Unexpected token: %s\n", print_token(o->token->type));
+        o->error = true;
+    }
     if (o->error)
         return (free_ast(expr), NULL);
     return expr;
