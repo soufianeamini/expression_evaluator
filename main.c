@@ -33,6 +33,9 @@ int main() {
         if (!line)
             break;
         t_token *token = lexer(line);
+        free(line);
+        if (!token)
+            continue;
         // print_tokens(token);
         t_tree *ast = parse(token);
         // print_ast(ast, 0);
@@ -41,7 +44,6 @@ int main() {
             printf("%d\n", (int)value);
         else
             printf("%.2f\n", value);
-        free(line);
         free_tokens(token);
         free_ast(ast);
     }
