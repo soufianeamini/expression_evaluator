@@ -7,6 +7,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <readline/readline.h>
+#include <readline/history.h>
 
 typedef enum token_type {
     INTEGER,

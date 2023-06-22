@@ -1,4 +1,5 @@
 #include "eval.h"
+#include <readline/history.h>
 
 void    print_tokens(t_token *token) {
     for (t_token *temp = token; temp; temp = temp->next) {
@@ -33,6 +34,8 @@ int main() {
         if (!line)
             break;
         t_token *token = lexer(line);
+        if (token)
+            add_history(line);
         free(line);
         if (!token)
             continue;
