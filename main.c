@@ -40,7 +40,7 @@ int main() {
         if (!token)
             continue;
         // print_tokens(token);
-        t_tree *ast = parse(token);
+        t_tree *ast = rparse(token);
         // print_ast(ast, 0);
         if (!ast) {
             free_tokens(token);

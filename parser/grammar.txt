@@ -1,3 +1,11 @@
+Original:
+
 expression  := <factor> (("+" | "-") <factor>)*
 factor      := <primary> (("*" | "/") <primary>)*
 primary     := "(" <expression> ")" | INTEGER
+
+Alternative (recursive):
+
+expression := <factor> | <factor> <expression>
+factor      := <primary> | <primary> <factor>
+primary     := "(" <exrpression> ")" | INTEGER

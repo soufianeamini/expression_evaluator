@@ -54,6 +54,7 @@ t_token    *lexer(char *line);
 
 // PARSER
 t_tree  *parse(t_token *token);
+t_tree  *rparse(t_token *token);
 t_tree  *expression(w_wrapper *o);
 
 // TREE

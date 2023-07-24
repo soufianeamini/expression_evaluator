@@ -74,6 +74,18 @@ t_tree  *factor(w_wrapper *o) {
     return expr;
 }
 
+t_tree  *rfactor(w_wrapper *o) {
+    t_tree *expr = primary(o);
+
+    if (match(o, STAR) || match(o, SLASH)) {
+        t_token *token = previous(o);
+        t_tree *right = rfactor(o);
+        expr = new_tree(expr, token, right);
+    }
+
+    return expr;
+}
+
 t_tree  *expression(w_wrapper *o) {
     t_tree *expr = factor(o);
 
@@ -83,6 +95,32 @@ t_tree  *expression(w_wrapper *o) {
         expr = new_tree(expr, token, right);
     }
 
+    return expr;
+}
+
+t_tree  *rexpression(w_wrapper *o) {
+    t_tree *expr = rfactor(o);
+
+    if (match(o, PLUS) || match(o, MINUS)) {
+        t_token *token = previous(o);
+        t_tree *right = rexpression(o);
+        expr = new_tree(expr, token, right);
+    }
+
+    return expr;
+}
+
+t_tree  *rparse(t_token *token) {
+    w_wrapper local;
+    w_wrapper *o = &local;
+    init_wrapper(o, token);
+    t_tree  *expr = rexpression(o);
+    if (o->token) {
+        printf("Error: Unexpected token: %s\n", print_token(o->token->type));
+        o->error = true;
+    }
+    if (o->error)
+        return (free_ast(expr), NULL);
     return expr;
 }
 
