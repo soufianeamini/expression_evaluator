@@ -4,8 +4,8 @@ expression  := <factor> (("+" | "-") <factor>)*
 factor      := <primary> (("*" | "/") <primary>)*
 primary     := "(" <expression> ")" | INTEGER
 
-Alternative (recursive):
+Alternative (directly recursive):
 
-expression := <factor> | <factor> <expression>
-factor      := <primary> | <primary> <factor>
-primary     := "(" <exrpression> ")" | INTEGER
+expression := <factor> | <factor> {"+" | "-"} <expression>
+factor      := <primary> | <primary> {"*" | "/"} <factor>
+primary     := "(" <expression> ")" | INTEGER
